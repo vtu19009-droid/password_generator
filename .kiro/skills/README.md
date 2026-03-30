@@ -10,8 +10,10 @@ Production-grade skills following the claude-skills pattern library.
 | `git-workflow` | auto | engineering | Git operations, GitHub auth, branching, conflict resolution |
 | `code-reviewer` | manual | engineering | Code quality, security audit, antipatterns, review checklists |
 | `senior-architect` | manual | engineering | Architecture decisions, ADRs, tech stack evaluation |
-| `ci-cd-pipeline` | manual | engineering | GitHub Actions, build automation, release pipelines |
+| `ci-cd-pipeline` | manual | engineering | GitHub Actions, build automation, pipeline validation, CI/CD tools |
 | `feature-deployment` | manual | engineering | End-to-end deployment, release process, rollback procedures |
+| `product-manager` | manual | product | RICE prioritization, PRDs, user research, metrics, product strategy |
+| `product-manager` | manual | product | Feature prioritization, PRDs, user research, success metrics |
 
 ## Usage
 
@@ -24,8 +26,10 @@ These load automatically in every session:
 Activate these when needed using `#skill-name` in chat:
 - `#code-reviewer` — when reviewing code
 - `#senior-architect` — when making architecture decisions
-- `#ci-cd-pipeline` — when setting up automation
+- `#ci-cd-pipeline` — when setting up automation or fixing pipelines
 - `#feature-deployment` — when deploying features or creating releases
+- `#product-manager` — when prioritizing features, writing PRDs, or conducting research
+- `#product-manager` — when planning features, writing PRDs, or conducting research
 
 ## Skill Structure
 
