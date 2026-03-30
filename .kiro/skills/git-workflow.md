@@ -1,23 +1,27 @@
 ---
 name: "git-workflow"
-description: Use this skill when the user asks to commit, push, pull, branch, or manage git repos. Covers GitHub auth, remotes, and common git operations.
+description: Use this skill when the user asks to commit, push, pull, branch, merge, resolve conflicts, or manage GitHub remotes and authentication.
 inclusion: auto
 ---
 
-# Git Workflow Skill
+# Git Workflow
 
-Git and GitHub operations for this workspace.
-
-## This Repo
-
-- Local path: `/Users/chaithanyavedagiri/nse-poller-worker`
-- GitHub: `https://github.com/vtu19009-droid/password_generator`
-- Branch: `main`
-- Remote alias for password_generator repo: `password_origin`
+Git and GitHub operations — commits, remotes, auth, branching, and conflict resolution.
 
 ---
 
-## Common Commands
+## This Repo
+
+| Key | Value |
+|-----|-------|
+| Local path | `/Users/chaithanyavedagiri/nse-poller-worker` |
+| GitHub repo | `https://github.com/vtu19009-droid/password_generator` |
+| Remote alias | `password_origin` |
+| Branch | `main` |
+
+---
+
+## Daily Workflows
 
 ### Stage, commit, push
 ```bash
@@ -26,33 +30,37 @@ git commit -m "your message"
 git push password_origin main
 ```
 
-### Check status
+### Check what changed
 ```bash
 git status
-git log --oneline -5
+git diff
+git log --oneline -10
 ```
 
-### Add a new remote
+### Pull latest
 ```bash
-git remote add <name> https://github.com/<user>/<repo>.git
-```
-
-### Fix auth (403 errors)
-```bash
-gh auth login   # easiest — uses browser
-# or use a PAT token:
-git remote set-url origin https://<token>@github.com/<user>/<repo>.git
+git pull password_origin main
 ```
 
 ---
 
-## .gitignore Recommendations for Java
+## Authentication
 
+### Fix 403 / permission denied (easiest)
+```bash
+gh auth login   # browser-based, handles token automatically
 ```
-*.class
-*.jar
-*.war
-.DS_Store
+
+### Use a Personal Access Token (PAT)
+1. Go to github.com/settings/tokens → Generate new token (classic) → check `repo`
+2. Update remote:
+```bash
+git remote set-url password_origin https://<YOUR_TOKEN>@github.com/vtu19009-droid/password_generator.git
+```
+
+### Check current remotes
+```bash
+git remote -v
 ```
 
 ---
@@ -60,8 +68,56 @@ git remote set-url origin https://<token>@github.com/<user>/<repo>.git
 ## Branching
 
 ```bash
-git checkout -b feature/my-feature   # new branch
-git push -u origin feature/my-feature
-git checkout main                    # back to main
-git merge feature/my-feature
+git checkout -b feature/my-feature     # create + switch
+git push -u password_origin feature/my-feature
+git checkout main                      # back to main
+git merge feature/my-feature           # merge in
+git branch -d feature/my-feature       # delete local branch
+```
+
+---
+
+## Conflict Resolution
+
+```bash
+git pull password_origin main          # triggers conflict
+# Edit conflicted files — remove <<<< ==== >>>> markers
+git add .
+git commit -m "resolve merge conflict"
+git push password_origin main
+```
+
+---
+
+## Undo Operations
+
+| Need | Command |
+|------|---------|
+| Undo last commit (keep changes) | `git reset --soft HEAD~1` |
+| Discard all local changes | `git checkout -- .` |
+| Remove untracked files | `git clean -fd` |
+| Amend last commit message | `git commit --amend -m "new message"` |
+
+---
+
+## .gitignore for Java
+
+```
+*.class
+*.jar
+*.war
+.DS_Store
+.env
+```
+
+---
+
+## Commit Message Convention
+
+```
+feat: add copy to clipboard button
+fix: correct strength label color for weak passwords
+refactor: extract password logic into PasswordService
+docs: update README with JAR packaging steps
+chore: add *.class to .gitignore
 ```
