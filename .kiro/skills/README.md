@@ -11,6 +11,7 @@ Production-grade skills following the claude-skills pattern library.
 | `code-reviewer` | manual | engineering | Code quality, security audit, antipatterns, review checklists |
 | `senior-architect` | manual | engineering | Architecture decisions, ADRs, tech stack evaluation |
 | `ci-cd-pipeline` | manual | engineering | GitHub Actions, build automation, release pipelines |
+| `feature-deployment` | manual | engineering | End-to-end deployment, release process, rollback procedures |
 
 ## Usage
 
@@ -24,6 +25,7 @@ Activate these when needed using `#skill-name` in chat:
 - `#code-reviewer` — when reviewing code
 - `#senior-architect` — when making architecture decisions
 - `#ci-cd-pipeline` — when setting up automation
+- `#feature-deployment` — when deploying features or creating releases
 
 ## Skill Structure
 
